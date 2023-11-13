@@ -16,7 +16,7 @@ def is_sum_of_primes(n):
 
 def input_natural_number():
     while True:
-        x = input('Zadej cislo: ')
+        x = input('Zadej prirozene cislo: ')
         try:
             x = int(x)
         except:
@@ -27,7 +27,13 @@ def input_natural_number():
             else:
                 print('buliguri')
 
+def main():
+    number = input_natural_number()
+    result = is_sum_of_primes(number)
+    if result == 0:
+        print('Nelze rozlozit')
+    else:
+        print(f'Lze rozlozit: {number - result} + {result} = {number}')
+
 if __name__ == '__main__':
-    x = input_natural_number()
-    print(is_sum_of_primes(x))
-    print(is_prime(is_sum_of_primes(x)))
+    main()
