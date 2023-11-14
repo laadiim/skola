@@ -19,21 +19,16 @@ def get_value_counts(data):
     ordered = {i: values[i] for i in myKeys}
     return ordered
 
-def hist(data):
-    labels = data.keys()
-    buffer = '_|'
-    for i in labels:
-        if int(i) >= 0:
-            print(f'  {i}|| {data[i]*buffer}')
-        else:
-            print(f' {i}|| {data[i]*buffer}')
-    
+def common(data):
+    values = list(data.keys())
+    counts = list(data.values())
+    id = counts.index(max(counts))
+    return values[id]
 
 def main():
-    data = rand_list(10, -5, 5)
+    data = rand_list(9, 0, 10)
     print(data)
-    print(get_value_counts(data))
-    hist(get_value_counts(data))
+    print(common(get_value_counts(data)))
 
 if __name__ == '__main__':
     main()
