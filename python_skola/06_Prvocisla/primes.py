@@ -16,7 +16,7 @@ def is_sum_of_primes(n):
 
 def input_natural_number():
     while True:
-        x = input('Zadej prirozene cislo: ')
+        x = input('Zadej prirozene pcislo: ')
         try:
             x = int(x)
         except:
