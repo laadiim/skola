@@ -37,9 +37,6 @@ class RPG:
         while True:
             tmp = (character1.vitality, character2.vitality)
             character2.defend(character1.attack())
-            character1.defend(character2.attack())
-            if character1.vitality == tmp[0] and character2.vitality == tmp[1]:
-                return 'draw'
             if not character1.is_alive():
                 if character2.is_alive():
                     return character2
@@ -50,8 +47,23 @@ class RPG:
                     return character1
                 else:
                     return 'draw'
+            if character1.vitality == tmp[0] and character2.vitality == tmp[1]:
+                return 'draw'
+            character1.defend(character2.attack())
+            if not character1.is_alive():
+                if character2.is_alive():
+                    return character2
+                else:
+                    return 'draw'
+            if not character2.is_alive():
+                if character1.is_alive():
+                    return character1
+                else:
+                    return 'draw'
+            if character1.vitality == tmp[0] and character2.vitality == tmp[1]:
+                return 'draw'
             
 
         
 rpg = RPG()
-rpg.fight(Character('Golias', 3, 0, 10), Character('David', 1, 1, 20))
+print(rpg.fight(Character('Golias', 3, 0, 10), Character('David', 1, 1, 20)).__str__())
