@@ -24,6 +24,7 @@ class Character:
     def take_weapon(self, weapon, hand):
         if self.weapons[hand] == None:
             self.weapons[hand] = weapon
+            print(self.weapons[hand])
             return True
         else:
             return False

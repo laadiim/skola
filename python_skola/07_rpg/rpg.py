@@ -30,8 +30,8 @@ class RPG:
         return wep
     
     def equip_character(self, character, left, right):
-        character.take_weapon(left, 0)
-        character.take_weapon(right, 1)
+        character.take_weapon(left, character.HAND_LEFT)
+        character.take_weapon(right, character.HAND_RIGHT)
 
     def fight(self, character1, character2):
         while True:
@@ -47,8 +47,6 @@ class RPG:
                     return character1
                 else:
                     return 'draw'
-            if character1.vitality == tmp[0] and character2.vitality == tmp[1]:
-                return 'draw'
             character1.defend(character2.attack())
             if not character1.is_alive():
                 if character2.is_alive():
@@ -64,6 +62,20 @@ class RPG:
                 return 'draw'
             
 
+    def run(self):
+        char1 = self.input_character()
+        wep1l = self.input_weapon()
+        wep1r = self.input_weapon()
+        self.equip_character(char1, wep1l, wep1r)
+        char2 = self.input_character()
+        wep2l = self.input_weapon()
+        wep2r = self.input_weapon()
+        self.equip_character(char2, wep2l, wep2r)
+        print(f'Vitez: {self.fight(char1, char2)}')
+
+            
+
         
-rpg = RPG()
-print(rpg.fight(Character('Golias', 3, 0, 10), Character('David', 1, 1, 20)).__str__())
+if __name__ == "__main__":
+    rpg = RPG()
+    rpg.run()
