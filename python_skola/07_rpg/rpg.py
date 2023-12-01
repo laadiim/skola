@@ -2,23 +2,39 @@ from character import Character
 from weapon import Weapon
 
 class RPG:
-    
-    characters = []
-    weapons = []
+    '''
+    RPG reprezentuje rpg hru
 
+    @Author: cakoral
+    @Date: 27.11.2023
+    '''
     def __init__(self):
+        '''
+        Konstruktor RPG
+        '''
         pass
 
     def input_character(self):
+        '''
+        Zada udaje o postave
+
+        Returns:
+            postava
+        '''
         char_name = input('Zadej jmeno postavy: ')
         char_strength = int(input('Zadej silu: '))
         char_agility = int(input('Zadej mrstnost: '))
         char_health = int(input('Zivoty postavy: '))
         char = Character(char_name, char_strength, char_agility, char_health)
-        self.characters.append(char)
         return char
 
     def input_weapon(self):
+        '''
+        Zada udaje o zbrani
+
+        Returns:
+            zbran
+        '''
         wep_name = input('Zadej jmeno zbrane: ')
         if wep_name == '':
             print('Nope')
@@ -26,14 +42,31 @@ class RPG:
         wep_attack = int(input('Zadej utok: '))
         wep_defense = int(input('Zadej obranu: '))
         wep = Weapon(wep_name, wep_attack, wep_defense)
-        self.weapons.append(wep)
         return wep
     
     def equip_character(self, character, left, right):
+        '''
+        Da postave zbrane
+
+        Args:
+            character: postava
+            left: leva zbran
+            right: prava zbran
+        '''
         character.take_weapon(left, character.HAND_LEFT)
         character.take_weapon(right, character.HAND_RIGHT)
 
     def fight(self, character1, character2):
+        '''
+        Spusti souboj
+
+        Args:
+            character1: prvni postava
+            character2: druha postava
+
+        Return:
+            vitez nebo remiza
+        '''
         while True:
             tmp = (character1.vitality, character2.vitality)
             character2.defend(character1.attack())
@@ -63,6 +96,9 @@ class RPG:
             
 
     def run(self):
+        '''
+        Spusti hru
+        '''
         char1 = self.input_character()
         wep1l = self.input_weapon()
         wep1r = self.input_weapon()
