@@ -51,6 +51,11 @@ class Game:
                     reached = True
                     break
             elif self.world.val(new_pos):
+                self.hero.move(dir)
+                self.world.draw(gui)
+                self.hero.draw(gui)
+                self.home.draw(gui)
+                gui.show()
                 break
             
         return reached            
